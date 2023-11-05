@@ -3,16 +3,19 @@ from django.shortcuts import render
 import requests
 from departures.models import Stations
 
+coord = {
+    "latitude": 52.52457212288371,
+    "longitude": 13.347867741684315,
+}
+
 
 # Create your views here.
 def index(request, results_no=10):
-    payload = {
-        "latitude": 52.52457212288371,
-        "longitude": 13.347867741684315,
-        "results": results_no,
-    }
+    payload = {**coord, **{"results": results_no}}
     stations = Stations.objects
-    if len(stations.all()) == 0:
+    if (
+        len(stations.all()) == 0
+    ):  # only do vbb api call if no stations are stored (to save time on page load)
         r = requests.get(
             "https://v6.vbb.transport.rest/locations/nearby", params=payload
         )
