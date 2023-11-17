@@ -1,6 +1,11 @@
 import requests
 from departures.models import Stations
 
+coord = {
+    "latitude": 52.52457212288371,
+    "longitude": 13.347867741684315,
+}
+
 
 def create_stations(stop):
     Stations.objects.create(station_name=stop["name"], station_id=stop["id"])

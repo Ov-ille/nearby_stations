@@ -1,14 +1,13 @@
 from django.apps import apps
 from departures.models import Stations
-from departures.views import coord
 from departures.helpers import (
     create_stations,
     delete_stations_helper,
     get_nearby_stations_from_vbb,
     get_departures_for_station_from_vbb,
+    coord,
 )
 import pytest
-import requests
 
 
 # Create your tests here.

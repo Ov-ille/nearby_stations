@@ -7,11 +7,6 @@ from rest_framework.decorators import api_view
 from .serializers import StationsSerializer
 from .helpers import *
 
-coord = {
-    "latitude": 52.52457212288371,
-    "longitude": 13.347867741684315,
-}
-
 
 # Create your views here.
 @api_view(["GET"])
