@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,15 +9,23 @@
 </head>
 
 <body>
-    {% if stops %}
+    <p>click <button id="btn-reload-stations">here</button> to reload 10 nearest stations from VBB Api</p>
+
+    {% if stations %}
+    {%if stations|length > 0 %}
+    <p>10 nearby Stations were imported to Database from VBB Api</p>
+    <p>click <button id="btn-stations">here</button> to show all stations and 3 departures with browsable API</p>
+    <p>click on a station to see 3 next departures with browsable API</p>
     <ul>
-        {% for stop in stops %}
-        <li>{{ stop }}</li>
+        {% for station in stations %}
+        <li><a href="stations/{{ station.station_id }}">{{ station.station_name }}</a></li>
         {% endfor %}
     </ul>
+    {% endif %}
     {% else %}
     <p>No stations are available.</p>
     {% endif %}
 </body>
+<script src="{% static 'js.js' %}"></script>
 
 </html>
